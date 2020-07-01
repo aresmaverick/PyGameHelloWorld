@@ -32,6 +32,7 @@
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
+		"davidanson.vscode-markdownlint",
 		"eamodio.gitlens",
 		"ms-python.python",
 		"ms-azuretools.vscode-docker",
