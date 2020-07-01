@@ -1,0 +1,50 @@
+{
+	"name": "Python 3 - PyGame",
+	"context": "..",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick a Python version. Rebuild the container 
+		// if it already exists to update. Available variants: 3, 3.6, 3.7, 3.8 
+		"args": { "VARIANT": "3.7" }
+	},
+
+	"runArgs": [
+		//TODO - Discover how to make this IP GENERIC
+        "-e", "DISPLAY=192.168.0.17:0.0",
+        "-v", "/tmp/.X11-unix:/tmp/.X11-unix"
+	],
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"python.pythonPath": "/usr/local/bin/python",
+		"python.linting.enabled": true,
+		"python.linting.pylintEnabled": true,
+		"python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
+		"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+		"python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
+		"python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
+		"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+		"python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
+		"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
+		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint"
+	},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"eamodio.gitlens",
+		"ms-python.python",
+		"ms-azuretools.vscode-docker",
+		"streetsidesoftware.code-spell-checker",
+		"tushortz.pygame-snippets"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	//"forwardPorts": [9000],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "pip3 install -r requirements.txt",
+
+	// Comment out to connect as root instead.
+	"remoteUser": "vscode"
+}
